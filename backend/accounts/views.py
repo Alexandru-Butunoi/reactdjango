@@ -24,6 +24,7 @@ class SignUpView(APIView):
                     return Response({'error': 'Password must be at least 6 characters.'})
                 else:
                     user = User.objects.create_user(email=email, password=password, name=name)
+
                     user.save()
                     return Response({'success': 'User created successfully!'})
         else:
