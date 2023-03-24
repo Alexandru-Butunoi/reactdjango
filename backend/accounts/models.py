@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, PermissionsMixin, BaseUserManager
 # Create your models here.
+
+
 class UserAccountManager(BaseUserManager):
     def create_user(self, email, name, password=None):
         if not email:
@@ -8,7 +10,7 @@ class UserAccountManager(BaseUserManager):
         email = self.normalize_email(email)
         user = self.model(email=email, name=name)
         user.set_password(password)
-        user.save()
+        user.save(using=self._db)
 
         return user
 
@@ -16,10 +18,9 @@ class UserAccountManager(BaseUserManager):
         user = self.create_user(email, name, password)
         user.is_superuser = True
         user.is_staff = True
-        user.save()
+        user.save(using=self._db)
 
         return user
-
 
 
 class UserAccount(AbstractUser, PermissionsMixin):
@@ -30,7 +31,7 @@ class UserAccount(AbstractUser, PermissionsMixin):
 
     objects = UserAccountManager()
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['name']
+    REQUIRED_FIELDS = ['name', ]
 
     def get_full_name(self):
         return self.name
