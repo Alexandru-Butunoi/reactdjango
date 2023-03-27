@@ -26,8 +26,15 @@ class ListingsSerializer(serializers.ModelSerializer):
 
 
 class ListingDetailSerializer(serializers.ModelSerializer):
-    photos = PhotoListingSerializer(read_only=True, many=True)
+    photos_listing = serializers.SerializerMethodField(
+        'get_listing_photo')
 
     class Meta:
         model = Listings
         fields = '__all__'
+
+    def get_listing_photo(self, photo_listing):
+        photo_listing_query = PhotoListing.objects.filter(listing_id=photo_listing.id)
+        serializer = PhotoListingSerializer(photo_listing_query, many=True)
+
+        return serializer.data
