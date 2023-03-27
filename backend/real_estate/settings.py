@@ -20,6 +20,7 @@ environ.Env.read_env()
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
@@ -43,8 +44,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'corsheaders',
     'rest_framework',
+    'django_filters',
     'accounts',
     'realtors',
+    'listings',
 
 ]
 
@@ -145,8 +148,11 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES':
         ('rest_framework_simplejwt.authentication.JWTAuthentication', ),
 
+    'DEFAULT_FILTER_BACKENDS':
+        ('django_filters.rest_framework.DjangoFilterBackend', ),
+
     'DEFAULT_PAGINATION_CLASS':
-        ('rest_framework.pagination.PageNumberPagination', ),
+        'rest_framework.pagination.PageNumberPagination',
 
     'PAGE_SIZE': 5
 }
