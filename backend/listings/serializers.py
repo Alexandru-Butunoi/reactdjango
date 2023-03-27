@@ -1,6 +1,5 @@
 from rest_framework import serializers
 from .models import Listings, PhotoListing
-from generic_relations.relations import GenericRelatedField
 
 
 class PhotoListingSerializer(serializers.ModelSerializer):
