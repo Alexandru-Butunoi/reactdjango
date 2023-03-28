@@ -73,4 +73,7 @@ class PhotoListing(models.Model):
             img.thumbnail((1125, 1125))
         img.save(self.photo.path, quality=70, optimize=True)
 
+    def __str__(self):
+        return self.photo.path
+
 

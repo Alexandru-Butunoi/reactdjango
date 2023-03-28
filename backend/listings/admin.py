@@ -8,6 +8,11 @@ class PhotoAdmin(admin.StackedInline):
 
 class ListingsAdmin(admin.ModelAdmin):
     inlines = [PhotoAdmin]
+    list_filter = ('realtor', )
+    list_editable = ('is_published', )
+    list_display = ('id', 'title', 'price', 'realtor', 'is_published')
+    list_display_links = ('id', 'title')
+    search_fields = ('realtor', )
 
     class Meta:
         model = Listings

@@ -5,6 +5,11 @@ from .models import Listings
 
 
 class ListingsFilter(filters.FilterSet):
+
+    sale_type = filters.MultipleChoiceFilter(choices=Listings.SaleType.choices, null_label='Any', null_value='')
+    property_type = filters.MultipleChoiceFilter(choices=Listings.PropertyType.choices, null_label='Any', null_value='')
+    furnished = filters.MultipleChoiceFilter(choices=Listings.Furnished.choices, null_value='')
+    parking = filters.MultipleChoiceFilter(choices=Listings.Parking.choices, null_value='')
     min_price = filters.NumberFilter(field_name='price', lookup_expr='gte')
     max_price = filters.NumberFilter(field_name='price', lookup_expr='lte')
     min_bedrooms = filters.NumberFilter(field_name='bedrooms_number', lookup_expr='gte')
@@ -22,4 +27,3 @@ class ListingsFilter(filters.FilterSet):
         model = Listings
         fields = ['title', 'address', 'city', 'county', 'price', 'sale_type', 'property_type', 'bedrooms_number',
                   'floor_number', 'slug']
-
