@@ -1,3 +1,3 @@
-# reactdjango
+Real Estates
 
-A Real-Estte App using Django and ReactJS
+A Real-Estate App using Django and ReactJS
