@@ -6,7 +6,7 @@ import {
     SIGNUP_SUCCESS,
     SIGNUP_FAILD,
     LOGOUT
-} from './types';
+} from './types';   
 
 export const signin = (email, password) => async dispatch => {
     const config = {
@@ -48,7 +48,7 @@ export const signup = (name, email, password, password2) => async dispatch => {
             type: SIGNUP_SUCCESS,
             payload : res.data
         });
-        dispatch(login(email, password));
+        dispatch(signin(email, password));
     }
     catch (err) {
         dispatch({
