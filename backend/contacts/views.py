@@ -5,7 +5,7 @@ from rest_framework.views import APIView
 from .models import Contact
 from django.core.mail import send_mail
 from rest_framework.response import Response
-from real_estate.settings import EMAIL_HOST_USER
+# from real_estate.settings import EMAIL_HOST_USER
 
 
 class ContactCreateView(APIView):
@@ -23,8 +23,8 @@ class ContactCreateView(APIView):
                 + data['email']
                 + '/n''Message:/n'
                 + data['message'],
-                EMAIL_HOST_USER,
-                [EMAIL_HOST_USER],
+                # EMAIL_HOST_USER,
+                # [EMAIL_HOST_USER],
                 fail_silently=False
             )
 
